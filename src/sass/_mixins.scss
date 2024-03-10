@@ -1,0 +1,61 @@
+@mixin fluid-text($max: 32, $min: 16) {
+    font-size: clamp(#{$min}, calc($max / 1131 * 100), $max);
+}
+
+@mixin hover() {
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
+    }
+    @media (hover: none) {
+        &:active {
+            @content;
+        }
+    }
+}
+
+@mixin animate-cube() {
+    @keyframes cube {
+        0% {
+            transform: rotateZ(0deg);
+        }
+        10% {
+            transform: rotateZ(45deg);
+        }
+
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+}
+
+@mixin animate-round() {
+    @keyframes round {
+        0% {
+            transform: rotateZ(0deg);
+        }
+        10% {
+            transform: rotateZ(45deg);
+        }
+
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+}
+
+@mixin animate-triangle() {
+    @keyframes triangle {
+        0% {
+            transform: rotateZ(0deg);
+        }
+        10% {
+            transform: rotateZ(45deg);
+        }
+
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+}

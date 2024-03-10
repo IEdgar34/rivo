@@ -1,0 +1,62 @@
+.services {
+    position: relative;
+    padding-top: 40px;
+    overflow: hidden;
+    padding-bottom: 40px;
+    &__subtitle {
+        @include tablet-small() {
+            font-size: 70px;
+        }
+    }
+    &__content {
+        margin-top: 52px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        justify-items: center;
+        gap: 30px;
+        /* grid-auto-rows: repeat(3, 1fr); */
+        /* display: flex;
+        gap: 30px; */
+    }
+    &__card {
+        max-width: 21.75rem;
+        color: var(--header-link-color-white);
+        &_title {
+            color: inherit;
+            margin-top: 30px;
+            margin-bottom: 24px;
+        }
+        &_description {
+            color: inherit;
+            font-size: 1.06rem;
+            font-weight: 500;
+            line-height: 150%;
+            margin-bottom: 32px;
+        }
+        a {
+            font-size: 1.06rem;
+            font-weight: 400;
+            line-height: 100%;
+            color: var(--color-yellow);
+        }
+    }
+    &__decor {
+        position: absolute;
+        width: 41.23rem;
+        height: 42.39rem;
+        left: 79%;
+        top: 0.25rem;
+        z-index: -10;
+        @include mobile-medium {
+            display: none;
+        }
+    }
+    &__decor-left {
+        position: absolute;
+        width: 52.32rem;
+        height: 53.87rem;
+        left: -31.69rem;
+        top: 14.79rem;
+        z-index: -10;
+    }
+}

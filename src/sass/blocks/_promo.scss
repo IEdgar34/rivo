@@ -1,0 +1,173 @@
+.promo {
+    position: relative;
+    /* min-width: 375px; */
+    max-width: 100%;
+    /* background: url(../images/backgroundimages.png) center center/cover no-repeat; */
+    background: url(../icons/giphy.gif) center center/cover no-repeat;
+    /* background: url(../images/bg.png) center center/cover no-repeat; */
+    min-height: 1448px;
+    padding-top: 35px;
+    box-shadow: inset 0px -76px 60px -40px #000000;
+    &__desc {
+        display: block;
+        max-width: 1062px;
+        min-height: 604px;
+        margin-left: 295px;
+        @include desctop() {
+            transition: 0.4s all;
+            margin-left: 50px;
+        }
+        @include tablet-large() {
+            margin-left: 10px;
+        }
+        @include mobile-small() {
+            margin-left: 0;
+        }
+
+        &_title {
+            margin-left: 110px;
+            color: var(--color-yellow);
+        }
+        &_help {
+            margin-top: 20px;
+            margin-left: 270px;
+            font-size: 140px;
+            font-weight: 900;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px white;
+            @include desctop-medium() {
+                transition: 0.6s all;
+                font-size: 100px;
+            }
+            @include desctop-small() {
+                transition: 0.6s all;
+                font-size: 70px;
+            }
+            @include tablet-medium() {
+                margin-left: 80px;
+            }
+            @include tablet-small() {
+                font-size: 60px;
+            }
+            @include mobile-large() {
+                font-size: 50px;
+            }
+        }
+        &_ideas {
+            margin-left: 110px;
+            color: var(--header-link-color-white);
+            font-size: 140px;
+            font-weight: 900;
+            line-height: 100%;
+            @include desctop-medium() {
+                font-size: 100px;
+            }
+            @include desctop-small() {
+                font-size: 70px;
+            }
+            @include tablet-medium() {
+                margin-left: 50px;
+            }
+            @include tablet-small() {
+                font-size: 60px;
+            }
+            @include mobile-large() {
+                font-size: 50px;
+            }
+        }
+        &_change {
+            margin-left: 270px;
+            color: var(--header-link-color-white);
+            font-size: 140px;
+            font-weight: 900;
+            line-height: 100%;
+            @include desctop-medium() {
+                font-size: 100px;
+            }
+            @include desctop-small() {
+                font-size: 70px;
+            }
+            @include tablet-medium() {
+                margin-left: 80px;
+            }
+            @include tablet-small() {
+                font-size: 60px;
+            }
+            @include mobile-large() {
+                font-size: 50px;
+            }
+        }
+        &_world {
+            font-size: 140px;
+            font-weight: 900;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px white;
+            @include desctop-medium() {
+                font-size: 100px;
+            }
+            @include desctop-small() {
+                font-size: 70px;
+            }
+            transition: 0.6s all;
+            @include tablet-medium() {
+                margin-left: 50px;
+            }
+            @include tablet-small() {
+                font-size: 60px;
+            }
+            @include mobile-large() {
+                font-size: 50px;
+            }
+        }
+    }
+    &_cube {
+        position: absolute;
+        right: 15rem;
+        top: 19.06rem;
+        animation-duration: 0.8s;
+        animation-iteration-count: infinite;
+        animation-name: cube;
+
+        @include animate-cube();
+        @include desctop-medium() {
+            transition: 0.6s all;
+            width: 130px;
+            height: 130px;
+            right: 10rem;
+            top: 28.06rem;
+        }
+        @include mobile-large() {
+            left: 9rem;
+        }
+    }
+    &_round {
+        position: absolute;
+        left: 11.5rem;
+        right: 157.26rem;
+        animation-duration: 0.8s;
+        animation-iteration-count: infinite;
+        animation-name: round;
+        @include animate-round();
+        @include mobile-large() {
+            left: 5rem;
+        }
+    }
+    &_triangle {
+        position: absolute;
+        left: 59.94rem;
+        top: 68.19rem;
+        animation-duration: 0.8s;
+        animation-iteration-count: infinite;
+        animation-name: triangle;
+        @include animate-triangle();
+        @include desctop-medium() {
+            left: 30rem;
+        }
+        @include tablet-medium() {
+            left: 15rem;
+        }
+        @include mobile-large() {
+            left: 8rem;
+        }
+    }
+}

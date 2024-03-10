@@ -1,0 +1,19 @@
+.title {
+    font-size: 3.25rem;
+    font-weight: 700;
+    line-height: 3.25rem;
+    text-align: left;
+    color: var(--header-link-color-white);
+    &__desc {
+        font-size: 6.25rem;
+        font-weight: 700;
+        line-height: 6.31rem;
+        text-align: left;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1px rgb(26, 26, 26);
+        transition: 0.8s all;
+        @include tablet-small() {
+            -webkit-text-fill-color: rgba(21, 22, 15, 63);
+        }
+    }
+}

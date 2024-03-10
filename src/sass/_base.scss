@@ -1,0 +1,24 @@
+* {
+    font-family: "Gilroy", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    position: relative;
+}
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+.container {
+    max-width: 1131px;
+    min-height: 345px;
+    margin: 0 auto;
+    padding: 0 10px;
+}

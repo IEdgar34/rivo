@@ -1,0 +1,64 @@
+$desctop--display-large: 1400px;
+$desctop--display-medium: 1200px;
+$desctop--display-small: 1000px;
+
+$tablet--display-large: 800px;
+$tablet--display-medium: 700px;
+$tablet--display-small: 600px;
+
+$mobile--display-large: 425px;
+$mobile--display-medium: 375px;
+$mobile--display-small: 320px;
+// большые дисплеи
+@mixin desctop() {
+    @media (max-width: $desctop--display-large) {
+        @content;
+    }
+}
+@mixin desctop-medium() {
+    @media (max-width: $desctop--display-medium) {
+        @content;
+    }
+}
+@mixin desctop-small() {
+    @media (max-width: $desctop--display-small) {
+        @content;
+    }
+}
+
+//плаыншеты
+
+@mixin tablet-large() {
+    @media (max-width: $tablet--display-large) {
+        @content;
+    }
+}
+
+@mixin tablet-medium() {
+    @media (max-width: $tablet--display-medium) {
+        @content;
+    }
+}
+
+@mixin tablet-small() {
+    @media (max-width: $tablet--display-small) {
+        @content;
+    }
+}
+//мобилки
+
+@mixin mobile-large() {
+    @media (max-width: $mobile--display-large) {
+        @content;
+    }
+}
+@mixin mobile-medium() {
+    @media (max-width: $mobile--display-medium) {
+        @content;
+    }
+}
+@mixin mobile-small() {
+    @media (max-width: $mobile--display-small) {
+        @content;
+    }
+}
