@@ -3,8 +3,10 @@ window.addEventListener("DOMContentLoaded", () => {
     const menuWrap = document.querySelector('[data-meny-open="menu"]'),
         menuIcon = menuWrap.querySelector(".dib"),
         menyburger = menuWrap.querySelector(".header__menu_burger ");
-    /* const days = document.querySelector(".time_days"); */
+    const btn = document.querySelector(".timer__btn");
+    //предварительный запуск таймера
     addTime();
+    //функция открытия меню
     function openMenu() {
         if (!menu.classList.contains("menu_active")) {
             addClass();
@@ -12,25 +14,28 @@ window.addEventListener("DOMContentLoaded", () => {
             delClass();
         }
     }
+    //функция добавления классов
     function addClass() {
         menuIcon.classList.add("dib_active");
         menu.classList.add("menu_active");
         menyburger.textContent = "CLOSE";
     }
+    //функция удаления классов
     function delClass() {
         menuIcon.classList.remove("dib_active");
         menu.classList.remove("menu_active");
         menyburger.textContent = "MENU";
     }
+    //событие клика для открытия меню
     menuWrap.addEventListener("click", (e) => {
         let target = e.target;
         if (target === menuIcon || target === menyburger) {
             openMenu();
         }
     });
-
+    //таймер
     function date() {
-        let t = Date.parse("2024 03 13") - Date.parse(new Date());
+        let t = Date.parse("2024 05 13") - Date.parse(new Date());
         let days = Math.floor((t / (1000 * 60 * 60 * 24)) % 30);
         let hours = Math.floor((t / (1000 * 60 * 60)) % 24);
         let minutes = Math.floor((t / (1000 * 60)) % 60);
@@ -44,7 +49,15 @@ window.addEventListener("DOMContentLoaded", () => {
             seconds: seconds,
         };
     }
+    let set = setInterval(() => {
+        addTime();
+    }, 1000);
 
+    function endOfTime(time) {
+        if (time < 0) {
+            clearInterval(set);
+        }
+    }
     function addTime() {
         let days = document.querySelector(".time_days");
         let hours = document.querySelector(".time_hours");
@@ -52,7 +65,7 @@ window.addEventListener("DOMContentLoaded", () => {
         let seconds = document.querySelector(".time_seconds");
         function updateTime() {
             let time = date();
-            endOfTimer(time);
+            endOfTime(time.t);
             days.textContent = addZero(time.days);
             hours.textContent = addZero(time.hours);
             minutes.textContent = addZero(time.minutes);
@@ -67,12 +80,152 @@ window.addEventListener("DOMContentLoaded", () => {
             return time;
         }
     }
-    function endOfTimer(time) {
-        if (time === 0) {
-            clearInterval(set);
+
+    //modal signup
+    const signupModal = document.querySelector(".signup");
+    const signupModalClose = document.querySelector(".signup__close");
+
+    btn.addEventListener("mousedown", () => {
+        btn.classList.add("timer__btn_active");
+    });
+    btn.addEventListener("mouseup", () => {
+        btn.classList.remove("timer__btn_active");
+        signupModal.classList.add("signup_active");
+        document.body.style.overflow = "hidden";
+    });
+
+    signupModalClose.addEventListener("click", () => {
+        signupModal.classList.remove("signup_active");
+        document.body.style.overflow = "";
+        reset();
+        /* del();
+        formModal[0].classList.add("signup__modal_active");
+        i = 0;
+        border.forEach((item) => {
+            item.classList.remove("width_active");
+        }); */
+    });
+
+    //signup modalForm
+    const formModal = document.querySelectorAll(".signup__modal");
+    const modalNext = document.querySelectorAll(".signup__modal_next");
+    const formNext = document.querySelectorAll(".signup__modal_next-wrap");
+    const border = document.querySelectorAll(".width");
+    const input = document.querySelectorAll("input");
+    const send = document.querySelector(".signup__modal_send");
+
+    //свитчер вперед
+    let b = 0;
+    let c = 1;
+    modalNext.forEach((item) => {
+        item.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (input[b].value === "" || input[c].value === "") {
+                console.log("пишу функционал");
+            } else {
+                b += 2;
+                c += 2;
+                borDer();
+                if (i < 2) {
+                    del();
+                    plus();
+                    creatElem();
+                }
+            }
+        });
+    });
+    //validate
+    /*  function error() {
+        if (input[b].value === "") {
+            input[b].style.border = "red";
         }
+    } */
+    /* const div = document.createElement("div"); */
+
+    /* function cleanError() {
+        input[b].style.border = "";
+        input[c].style.border = "";
+    } */
+
+    function reset() {
+        del();
+        formModal[0].classList.add("signup__modal_active");
+        i = 0;
+        b = 0;
+        c = 1;
+        border.forEach((item) => {
+            item.classList.remove("width_active");
+        });
+        input.forEach((item) => {
+            item.value = "";
+        });
     }
-    let set = setInterval(() => {
-        addTime();
-    }, 1000);
+
+    //функция вперед
+    let i = 0;
+    function plus() {
+        ++i;
+        formModal[i].classList.add("signup__modal_active");
+    }
+    //функйия назад
+    function minus() {
+        /* cleanError(); */
+        b -= 2;
+        c -= 2;
+        border[i].classList.remove("width_active");
+        --i;
+        del();
+        formModal[i].classList.add("signup__modal_active");
+    }
+    //анимация загрузки
+    function borDer() {
+        border[i].classList.add("width_active");
+    }
+    //удаление классов
+    function del() {
+        /* cleanError(); */
+        formModal.forEach((item) => {
+            item.classList.remove("signup__modal_active");
+        });
+    }
+    //создание свитчера назад и событие на функцию
+    function creatElem() {
+        const p = document.createElement("p");
+        p.classList.add("signup__modal_next");
+        p.classList.add("signup__modal_prev");
+        p.textContent = "←";
+        formNext[i].prepend(p);
+
+        p.addEventListener("click", () => {
+            minus();
+        });
+    }
+    //SEND
+
+    send.addEventListener("click", (e) => {
+        e.preventDefault();
+        borDer();
+
+        //объект инпутов
+        class Formdate {
+            constructor(name, surname, login, password) {
+                (this.name = name), (this.surname = surname), (this.login = login), (this.password = password);
+            }
+        }
+        let dat = new Formdate(input[0].value, input[1].value, input[2].value, input[3].value);
+        const inpDat = JSON.stringify(dat);
+        const request = new XMLHttpRequest();
+        request.open("POST", "server.php");
+        request.setRequestHeader("Content-type", "application/json");
+        request.send(inpDat);
+
+        request.addEventListener("load", () => {
+            if (request.status === 200) {
+                console.log(inpDat);
+                const time = setTimeout(() => {
+                    reset();
+                }, 2000);
+            }
+        });
+    });
 });

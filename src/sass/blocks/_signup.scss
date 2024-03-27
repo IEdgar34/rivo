@@ -1,0 +1,149 @@
+.signup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 30px 10px;
+    z-index: 10002;
+    display: none;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(15px);
+    &_active {
+        display: block;
+    }
+    &__close {
+        position: fixed;
+        right: 2%;
+        z-index: 10003;
+        font-size: 50px;
+        color: var(--color-yellow);
+        cursor: pointer;
+    }
+    &__tracking {
+        max-width: 50%;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        &_w {
+            width: 33%;
+        }
+        &_number {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--color-yellow);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--color-yellow);
+        }
+        &_border {
+            position: relative;
+            display: block;
+            margin-top: 8px;
+            padding: 1px 10px;
+            width: 100%;
+            height: 20px;
+            border: 1px solid var(--color-yellow);
+            border-radius: 5px;
+            color: var(--color-yellow);
+            transition: background-color 1s;
+            overflow: hidden;
+        }
+    }
+    &__modal {
+        position: relative;
+        display: none;
+        width: 300px;
+        height: 300px;
+        padding: 40px 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+
+        &_wrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        &_active {
+            display: block;
+            display: flex;
+            flex-direction: column;
+        }
+        &_next-wrap {
+            flex: 1 1 auto;
+            width: 100%;
+            height: 70%;
+            display: flex;
+            justify-content: space-between;
+        }
+        &_next {
+            font-size: 60px;
+            color: var(--color-yellow);
+            position: absolute;
+            right: 10%;
+            bottom: 0%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        &_prev {
+            left: 10%;
+            width: 60px;
+        }
+        &_send {
+            position: absolute;
+            right: 10%;
+            bottom: 5%;
+            width: 70px;
+            height: 30px;
+            background-color: transparent;
+            border: none;
+            border: 1px solid var(--color-yellow);
+            color: var(--color-yellow);
+            cursor: pointer;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &_input {
+            display: block;
+            width: 80%;
+            height: 30px;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding: 5px 10px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+        }
+        .error {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: red;
+        }
+    }
+}
+
+.width {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    transform: translateX(-100%);
+    background-color: var(--color-yellow);
+    transition: 0.8s all;
+    &_active {
+        transform: translateX(0);
+    }
+}
