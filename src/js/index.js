@@ -98,12 +98,7 @@ window.addEventListener("DOMContentLoaded", () => {
         signupModal.classList.remove("signup_active");
         document.body.style.overflow = "";
         reset();
-        /* del();
-        formModal[0].classList.add("signup__modal_active");
-        i = 0;
-        border.forEach((item) => {
-            item.classList.remove("width_active");
-        }); */
+        cleanMessages();
     });
 
     //signup modalForm
@@ -121,7 +116,7 @@ window.addEventListener("DOMContentLoaded", () => {
         item.addEventListener("click", (e) => {
             e.stopPropagation();
             if (input[b].value === "" || input[c].value === "") {
-                console.log("пишу функционал");
+                error();
             } else {
                 b += 2;
                 c += 2;
@@ -135,29 +130,35 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     });
     //validate
-    /*  function error() {
-        if (input[b].value === "") {
-            input[b].style.border = "red";
+    function error() {
+        switch ("") {
+            case input[b].value:
+                input[b].style.cssText = "border: 2px solid red;";
+                errorMessages(input[b]);
+            // fall through
+            case input[c].value:
+                input[c].style.cssText = "border: 2px solid red; ";
+                errorMessages(input[c]);
         }
-    } */
-    /* const div = document.createElement("div"); */
+    }
 
-    /* function cleanError() {
-        input[b].style.border = "";
-        input[c].style.border = "";
-    } */
-
-    function reset() {
-        del();
-        formModal[0].classList.add("signup__modal_active");
-        i = 0;
-        b = 0;
-        c = 1;
-        border.forEach((item) => {
-            item.classList.remove("width_active");
+    function errorMessages(inp) {
+        const div = document.createElement("div");
+        div.classList.add("error");
+        div.classList.add(inp.placeholder);
+        div.textContent = `enter your ${inp.placeholder}`;
+        let elem = document.querySelector(`.${inp.placeholder}`);
+        if (!elem) {
+            inp.after(div);
+        }
+    }
+    function cleanMessages() {
+        const elem = document.querySelectorAll(".error");
+        elem.forEach((item) => {
+            item.remove();
         });
         input.forEach((item) => {
-            item.value = "";
+            item.style.cssText = "";
         });
     }
 
@@ -169,7 +170,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     //функйия назад
     function minus() {
-        /* cleanError(); */
+        cleanMessages();
         b -= 2;
         c -= 2;
         border[i].classList.remove("width_active");
@@ -183,7 +184,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     //удаление классов
     function del() {
-        /* cleanError(); */
+        cleanMessages();
         formModal.forEach((item) => {
             item.classList.remove("signup__modal_active");
         });
@@ -228,4 +229,19 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    function reset() {
+        cleanMessages();
+        del();
+        formModal[0].classList.add("signup__modal_active");
+        i = 0;
+        b = 0;
+        c = 1;
+        border.forEach((item) => {
+            item.classList.remove("width_active");
+        });
+        input.forEach((item) => {
+            item.value = "";
+        });
+    }
 });
