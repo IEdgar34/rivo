@@ -1,7 +1,7 @@
 .timer {
     position: relative;
     width: 100%;
-    height: 450px;
+    min-height: 450px;
     /* max-height: 100%;
     min-height: 300px; */
     padding: 20px 20px;
@@ -14,6 +14,9 @@
         font-size: 2rem;
         color: var(--header-link-color-white);
         text-align: center;
+        @include mobile-large() {
+            font-size: 1rem;
+        }
     }
     &__wrap {
         /* position: absolute;
@@ -24,6 +27,14 @@
         justify-content: center;
         align-items: center;
         gap: 100px;
+        @include desctop-small() {
+            gap: 20px;
+        }
+        @include mobile-large() {
+            display: grid;
+            grid-template-columns: repeat(2, 80px);
+            justify-items: center;
+        }
     }
     &__blocks {
         width: 150px;
@@ -34,14 +45,31 @@
         justify-content: center;
         align-items: center;
         font-size: 120px;
+        transition: 0.8s all;
+        @include tablet-medium() {
+            width: 100px;
+            height: 150px;
+            font-size: 80px;
+        }
+        @include tablet-small() {
+            width: 80px;
+            height: 120px;
+            font-size: 50px;
+        }
     }
     &__text {
         text-transform: uppercase;
         text-align: center;
         color: var(--color-yellow);
+        transition: 0.8s all;
         span {
             font-size: 1.5rem;
             font-weight: 600;
+            @include tablet-small() {
+                font-size: 0.8rem;
+            }
+        }
+        @include desctop-small() {
         }
     }
     &__btn {

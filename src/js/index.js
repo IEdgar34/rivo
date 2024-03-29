@@ -208,7 +208,11 @@ window.addEventListener("DOMContentLoaded", () => {
         borDer();
 
         //объект инпутов
-        const dat = {};
+        const dat = {
+            toString() {
+                return "dat";
+            },
+        };
         input.forEach((item) => {
             dat[item.placeholder] = item.value;
         });
@@ -229,6 +233,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     reset();
                 }, 2000);
+            })
+            .catch(() => {
+                console.error(`Произошла ошибка, объект ${dat} не отрпавился `);
             });
     });
 
