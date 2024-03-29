@@ -208,26 +208,28 @@ window.addEventListener("DOMContentLoaded", () => {
         borDer();
 
         //объект инпутов
-        class Formdate {
-            constructor(name, surname, login, password) {
-                (this.name = name), (this.surname = surname), (this.login = login), (this.password = password);
-            }
-        }
-        let dat = new Formdate(input[0].value, input[1].value, input[2].value, input[3].value);
-        const inpDat = JSON.stringify(dat);
-        const request = new XMLHttpRequest();
-        request.open("POST", "server.php");
-        request.setRequestHeader("Content-type", "application/json");
-        request.send(inpDat);
+        const dat = {};
+        input.forEach((item) => {
+            dat[item.placeholder] = item.value;
+        });
+        console.log(JSON.stringify(dat));
 
-        request.addEventListener("load", () => {
-            if (request.status === 200) {
-                console.log(inpDat);
-                const time = setTimeout(() => {
+        fetch("server.php", {
+            method: "POST",
+            headers: {
+                "Conetnt-type": "application/json",
+            },
+            body: JSON.stringify(dat),
+        })
+            .then((dat) => dat.text())
+            .then(() => {
+                console.log(dat);
+            })
+            .then(() => {
+                setTimeout(() => {
                     reset();
                 }, 2000);
-            }
-        });
+            });
     });
 
     function reset() {
