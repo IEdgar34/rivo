@@ -202,29 +202,32 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
     //SEND
+    async function post(url, content) {
+        const promis = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Conetnt-type": "application/json",
+            },
+            body: content,
+        });
 
+        try {
+            return promis;
+        } catch (err) {
+            console.log(err);
+        }
+    }
     send.addEventListener("click", (e) => {
         e.preventDefault();
         borDer();
 
         //объект инпутов
-        const dat = {
-            toString() {
-                return "dat";
-            },
-        };
+        const dat = {};
         input.forEach((item) => {
             dat[item.placeholder] = item.value;
         });
         console.log(JSON.stringify(dat));
-
-        fetch("server.php", {
-            method: "POST",
-            headers: {
-                "Conetnt-type": "application/json",
-            },
-            body: JSON.stringify(dat),
-        })
+        post("server.php", JSON.stringify(dat))
             .then((dat) => dat.text())
             .then(() => {
                 console.log(dat);

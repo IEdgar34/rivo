@@ -62,3 +62,9 @@ $mobile--display-small: 320px;
         @content;
     }
 }
+
+@mixin default() {
+    @media (max-width: 1100px) {
+        @content;
+    }
+}

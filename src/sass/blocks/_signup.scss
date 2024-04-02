@@ -27,6 +27,9 @@
         display: flex;
         justify-content: space-between;
         gap: 30px;
+        @include tablet-small() {
+            margin: 0;
+        }
         &_w {
             width: 33%;
         }
@@ -52,6 +55,9 @@
             color: var(--color-yellow);
             transition: background-color 1s;
             overflow: hidden;
+            @include mobile-large() {
+                padding: 1px 3px;
+            }
         }
     }
     &__modal {
