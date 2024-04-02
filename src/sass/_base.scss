@@ -8,6 +8,7 @@
 body {
     background-color: black;
     position: relative;
+    -webkit-overflow-scrolling: touch;
 }
 a {
     text-decoration: none;
@@ -22,5 +23,3 @@ li {
     margin: 0 auto;
     padding: 0 10px;
 }
-
-
