@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     //таймер
     function date() {
-        let t = Date.parse("2024 05 13") - Date.parse(new Date());
+        let t = Date.parse("2024-05-13") - Date.parse(new Date());
         let days = Math.floor((t / (1000 * 60 * 60 * 24)) % 30);
         let hours = Math.floor((t / (1000 * 60 * 60)) % 24);
         let minutes = Math.floor((t / (1000 * 60)) % 60);
