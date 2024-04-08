@@ -266,20 +266,25 @@ window.addEventListener("DOMContentLoaded", () => {
     let size = window.getComputedStyle(width).width;
     let counter = 0;
 
-    window.addEventListener("resize", () => {
-        size = window.getComputedStyle(width).width;
-    });
+    function resizeSliderWidth() {
+        window.addEventListener("resize", () => {
+            size = window.getComputedStyle(width).width;
+            counter = 0;
+            slide.style.transform = `translateX(-${counter}px)`;
+        });
 
-    globalWrapper.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (e.target.classList.contains("slider__next")) {
-            counter === parseInt(size) * (itemlist.length - 1) ? (counter = 0) : (counter += parseInt(size));
-            console.log(counter);
-            slide.style.transform = `translateX(-${counter}px)`;
-        } else if (e.target.classList.contains("slider__prev")) {
-            counter === 0 ? (counter = parseInt(size) * (itemlist.length - 1)) : (counter -= parseInt(size));
-            console.log(counter);
-            slide.style.transform = `translateX(-${counter}px)`;
-        }
-    });
+        globalWrapper.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if (e.target.classList.contains("slider__next")) {
+                counter === parseInt(size) * (itemlist.length - 1) ? (counter = 0) : (counter += parseInt(size));
+                console.log(counter);
+                slide.style.transform = `translateX(-${counter}px)`;
+            } else if (e.target.classList.contains("slider__prev")) {
+                counter === 0 ? (counter = parseInt(size) * (itemlist.length - 1)) : (counter -= parseInt(size));
+                slide.style.transform = `translateX(-${counter}px)`;
+            }
+        });
+    }
+    resizeSliderWidth();
 });
