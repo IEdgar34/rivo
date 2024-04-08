@@ -259,49 +259,32 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //slider
 
-    const width = document.querySelector(".slider__wrapper");
-    const globalWrapper = document.querySelector(".slider__pr");
-    const slide = document.querySelector(".slider__inner");
-    const itemlist = document.querySelectorAll(".slider__item_img");
-    const item = document.querySelectorAll(".slider__item");
-    let size = window.getComputedStyle(width).width;
-    slide.style.width = parseInt(size) * itemlist.length + "px";
-    console.log(parseInt(size) * itemlist.length);
-    itemlist.forEach((item) => {
-        console.log(parseInt(size));
-        item.style.width = parseInt(size) + "px";
-    });
-    item.forEach((item) => {
-        item.style.width = parseInt(size) + "px";
-    });
-    let counter = 0;
+    function s() {
+        let counter = 0;
+        const globalWrapper = document.querySelector(".slider__pr");
+        const sliderWindow = document.querySelector(".slider__wrapper");
+        const slider = document.querySelector(".slider__inner");
+        const sliderItem = document.querySelectorAll(".slider__item");
 
-    function resizeSliderWidth() {
-        window.addEventListener("resize", () => {
-            size = window.getComputedStyle(width).width;
-
-            slide.style.width = parseInt(size) * itemlist.length + "px";
-            itemlist.forEach((item) => {
-                item.style.width = parseInt(size) + "px";
-            });
-            item.forEach((item) => {
-                item.style.width = parseInt(size) + "px";
-            });
-            counter = 0;
-            slide.style.transform = `translateX(-${counter}px)`;
+        const width = window.getComputedStyle(sliderWindow).width;
+        console.log(width);
+        slider.style.width = parseInt(width) * sliderItem.length + "px";
+        sliderItem.forEach((item) => {
+            item.style.width = parseInt(width) + "px";
         });
 
         globalWrapper.addEventListener("click", (e) => {
-            e.preventDefault();
-            console.log(Math.floor(parseInt(size)));
             if (e.target.classList.contains("slider__next")) {
-                counter === parseInt(size) * (itemlist.length - 1) ? (counter = 0) : (counter += parseInt(size));
-                slide.style.transform = `translateX(-${counter}px)`;
+                counter === parseInt(width) * (sliderItem.length - 1) ? (counter = 0) : (counter += parseInt(width));
+                slider.style.transform = `translateX(-${parseInt(counter)}px)`;
             } else if (e.target.classList.contains("slider__prev")) {
-                counter === 0 ? (counter = parseInt(size) * (itemlist.length - 1)) : (counter -= parseInt(size));
-                slide.style.transform = `translateX(-${counter}px)`;
+                counter === 0 ? (counter = parseInt(width) * (sliderItem.length - 1)) : (counter -= parseInt(width));
+                slider.style.transform = `translateX(-${parseInt(counter)}px)`;
             }
         });
     }
-    resizeSliderWidth();
+    s();
+    window.addEventListener("resize", () => {
+        s();
+    });
 });
