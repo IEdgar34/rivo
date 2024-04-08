@@ -258,33 +258,27 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     //slider
+    let counter = 0;
+    const globalWrapper = document.querySelector(".slider__pr");
+    const sliderWindow = document.querySelector(".slider__wrapper");
+    const slider = document.querySelector(".slider__inner");
+    const sliderItem = document.querySelectorAll(".slider__item");
 
-    function s() {
-        let counter = 0;
-        const globalWrapper = document.querySelector(".slider__pr");
-        const sliderWindow = document.querySelector(".slider__wrapper");
-        const slider = document.querySelector(".slider__inner");
-        const sliderItem = document.querySelectorAll(".slider__item");
+    const width = window.getComputedStyle(sliderWindow).width;
 
-        const width = window.getComputedStyle(sliderWindow).width;
-        console.log(width);
-        slider.style.width = parseInt(width) * sliderItem.length + "px";
-        sliderItem.forEach((item) => {
-            item.style.width = parseInt(width) + "px";
-        });
+    slider.style.width = parseInt(width) * sliderItem.length + "px";
 
-        globalWrapper.addEventListener("click", (e) => {
-            if (e.target.classList.contains("slider__next")) {
-                counter === parseInt(width) * (sliderItem.length - 1) ? (counter = 0) : (counter += parseInt(width));
-                slider.style.transform = `translateX(-${parseInt(counter)}px)`;
-            } else if (e.target.classList.contains("slider__prev")) {
-                counter === 0 ? (counter = parseInt(width) * (sliderItem.length - 1)) : (counter -= parseInt(width));
-                slider.style.transform = `translateX(-${parseInt(counter)}px)`;
-            }
-        });
-    }
-    s();
-    window.addEventListener("resize", () => {
-        s();
+    sliderItem.forEach((item) => {
+        item.style.width = parseInt(width) + "px";
+    });
+
+    globalWrapper.addEventListener("click", (e) => {
+        if (e.target.classList.contains("slider__next")) {
+            counter === parseInt(width) * (sliderItem.length - 1) ? (counter = 0) : (counter += parseInt(width));
+            slider.style.transform = `translateX(-${parseInt(counter)}px)`;
+        } else if (e.target.classList.contains("slider__prev")) {
+            counter === 0 ? (counter = parseInt(width) * (sliderItem.length - 1)) : (counter -= parseInt(width));
+            slider.style.transform = `translateX(-${parseInt(counter)}px)`;
+        }
     });
 });
