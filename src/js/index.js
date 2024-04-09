@@ -274,14 +274,10 @@ window.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
         setTimeout(() => {
             width = window.getComputedStyle(sliderWindow).width;
-        }, 700);
-        setTimeout(() => {
             sliderItem.forEach((item) => {
                 item.style.width = parseInt(width) + "px";
             });
-
-            console.log(width);
-        }, 800);
+        }, 600);
         counter = 0;
         slider.style.transform = `translateX(-${parseInt(counter)}px)`;
     });
