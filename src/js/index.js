@@ -264,14 +264,27 @@ window.addEventListener("DOMContentLoaded", () => {
     const slider = document.querySelector(".slider__inner");
     const sliderItem = document.querySelectorAll(".slider__item");
 
-    const width = window.getComputedStyle(sliderWindow).width;
+    let width = window.getComputedStyle(sliderWindow).width;
 
-    slider.style.width = parseInt(width) * sliderItem.length + "px";
+    /* slider.style.width = parseInt(width) * sliderItem.length + "px"; */
 
     sliderItem.forEach((item) => {
         item.style.width = parseInt(width) + "px";
     });
+    window.addEventListener("resize", () => {
+        setTimeout(() => {
+            width = window.getComputedStyle(sliderWindow).width;
+        }, 700);
+        setTimeout(() => {
+            sliderItem.forEach((item) => {
+                item.style.width = parseInt(width) + "px";
+            });
 
+            console.log(width);
+        }, 800);
+        counter = 0;
+        slider.style.transform = `translateX(-${parseInt(counter)}px)`;
+    });
     globalWrapper.addEventListener("click", (e) => {
         if (e.target.classList.contains("slider__next")) {
             counter === parseInt(width) * (sliderItem.length - 1) ? (counter = 0) : (counter += parseInt(width));
